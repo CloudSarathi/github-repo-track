@@ -1,9 +1,9 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
-📂 **[𝑨𝑾𝑺-𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔](https://github.com/CloudSarathi/AWS-Resources)**
+📂 **[𝑨𝑾𝑺_𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔](https://github.com/CloudSarathi/AWS_Resources)**
 
-AWS Complete Notes
+AWS_Resources Notes
 
 <sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
