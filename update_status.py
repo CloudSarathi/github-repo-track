@@ -1,37 +1,60 @@
 import requests
 from datetime import datetime
 
+# ನಿಮ್ಮ ಯೂಸರ್ ನೇಮ್
 USERNAME = "CloudSarathi"
-REPOS = ["01-Linux-Fundamentals", "02-Git-GitHub"]
 
-def get_stats(repo):
-    url = f"https://api.github.com/repos/{USERNAME}/{repo}"
+def get_all_repos():
+    # ಪಬ್ಲಿಕ್ ರೆಪೊಸಿಟರಿಗಳನ್ನು ಪಡೆಯಲು API Call (ಇತ್ತೀಚಿನ ಅಪ್‌ಡೇಟ್ ಮೊದಲು ಬರುವಂತೆ ಸಾರ್ಟ್ ಮಾಡಲಾಗಿದೆ)
+    url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&sort=updated"
     try:
-        res = requests.get(url).json()
-        if 'name' in res:
-            return f"| **{res['name']}** | {res['stargazers_count']} | {res['open_issues_count']} | {res['pushed_at'][:10]} |"
-    except:
-        pass
-    return None
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+    except Exception as e:
+        print(f"Error fetching repos: {e}")
+    return []
 
-# ಹೊಸ ಡೇಟಾ ತಯಾರಿ
-table_header = "| Repository | ⭐ Stars | 🛠️ Issues | 📅 Last Update |\n| :--- | :---: | :---: | :--- |\n"
-rows = [get_stats(r) for r in REPOS if get_stats(r)]
-table = table_header + "\n".join(rows)
+def format_row(repo):
+    name = repo.get('name')
+    url = repo.get('html_url')
+    stars = repo.get('stargazers_count', 0)
+    issues = repo.get('open_issues_count', 0)
+    # ದಿನಾಂಕವನ್ನು ಸುಲಭವಾಗಿ ಓದಲು ಫಾರ್ಮ್ಯಾಟ್ ಮಾಡಿ (YYYY-MM-DD)
+    date = repo.get('pushed_at', '')[:10]
+    # ಭಾಷೆಯನ್ನು ತೋರಿಸಲು (Python, Shell, etc.)
+    lang = repo.get('language', 'No Lang')
+    
+    return f"| [**{name}**]({url}) | {lang} | ⭐ {stars} | 🛠️ {issues} | 📅 {date} |"
 
-# ಸಮಯವನ್ನು ಸರಿಯಾಗಿ ಫಾರ್ಮ್ಯಾಟ್ ಮಾಡಿ
+# 1. ಎಲ್ಲಾ ರೆಪೊಸಿಟರಿಗಳ ಡೇಟಾ ಸಂಗ್ರಹ
+all_repos = get_all_repos()
+
+# 2. ಟೇಬಲ್ ಹೆಡರ್ ಸಿದ್ಧಪಡಿಸುವುದು
+header = "| Repository | Language | Stars | Issues | Last Update |\n| :--- | :--- | :---: | :---: | :--- |\n"
+
+# 3. ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ರೆಪೊಸಿಟರಿಯನ್ನು (CloudSarathi/CloudSarathi) ಹೊರತುಪಡಿಸಿ ಉಳಿದೆಲ್ಲವನ್ನೂ ಸೇರಿಸಿ
+rows = [format_row(r) for r in all_repos if r['name'].lower() != USERNAME.lower()]
+table = header + "\n".join(rows)
+
+# 4. ಪೂರ್ತಿ README ಕಂಟೆಂಟ್ ತಯಾರಿ
 current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-# ಸಂಪೂರ್ಣ ಹೊಸ ಫೈಲ್ ಕಂಟೆಂಟ್ (ಇದು ಹಳೆಯ 182MB ಕಸವನ್ನು ಪೂರ್ತಿ ಅಳಿಸಿ ಹಾಕುತ್ತದೆ)
-new_readme_content = f"""# 📊 Cloud Sarathi Live Repo Tracker
+readme_content = f"""# 📊 Cloud Sarathi Live Project Dashboard
 
-ಈ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ನನ್ನ ಪ್ರಮುಖ ಡೆವೊಪ್ಸ್ ರೆಪೊಸಿಟರಿಗಳನ್ನು ಲೈವ್ ಆಗಿ ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತದೆ.
+ನನ್ನ ಕಲಿಕೆ ಮತ್ತು ಡೆವೊಪ್ಸ್ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಇಲ್ಲಿದೆ. ಇದು ಆಟೋಮ್ಯಾಟಿಕ್ ಆಗಿ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತದೆ.
 
 {table}
-*ಕೊನೆಯದಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದ್ದು: {current_time}*
+*Last Automated Update: {current_time} (IST)*
+
+---
+### 🚀 Connect with Cloud Sarathi
+* 📺 [YouTube Channel](https://www.youtube.com/@CloudSarathi)
+* 💼 [LinkedIn](https://www.linkedin.com/in/cloudsarathi)
 """
 
+# 5. ಹಳೆಯದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಅಳಿಸಿ ಹೊಸದಾಗಿ ಬರೆಯುವುದು (Overwrite)
 with open("README.md", "w", encoding="utf-8") as f:
-    f.write(new_readme_content)
+    f.write(readme_content)
 
-print("✅ README.md has been reset and updated safely!")
+print(f"✅ Dashboard updated with {len(rows)} public repositories!")
