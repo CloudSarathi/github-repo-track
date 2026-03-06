@@ -2,25 +2,33 @@ name: Repo Status Tracker
 
 on:
   schedule:
-    - cron: '0 * * * *' # ಪ್ರತಿ ಗಂಟೆಗೆ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತದೆ
-  workflow_dispatch:   # ಮ್ಯಾನುಯಲ್ ಆಗಿ ರನ್ ಮಾಡಲು ಬಟನ್ ನೀಡುತ್ತದೆ
+    - cron: '0 * * * *'
+  workflow_dispatch:
   push:
     branches: [main]
 
 jobs:
-  update-status:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Update Repo Status
-        uses: NotHarshhaa/github-repo-status-tracker@main
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
-          # ನೀವು ಟ್ರ್ಯಾಕ್ ಮಾಡಬೇಕಾದ ರೆಪೊಸಿಟರಿಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿದೆ
-          repositories: "CloudSarathi/01-Linux-Fundamentals, CloudSarathi/02-Git-GitHub, CloudSarathi/into-the-devops"
-          # ಟೇಬಲ್ ಸ್ಟೈಲ್ ಆಯ್ಕೆ ಮಾಡಿ
-          show_stars: true
-          show_issues: true
-          show_last_commit: true
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Run Script
+        run: python update_status.py
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "📊 Automated Dashboard Update" || echo "No changes"
+          git push
