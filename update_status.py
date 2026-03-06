@@ -3,6 +3,13 @@ from datetime import datetime
 
 USERNAME = "CloudSarathi"
 
+def get_fancy_font(text):
+    # ಇದು ನಾರ್ಮಲ್ ಅಕ್ಷರಗಳನ್ನು Fancy Italic ಅಕ್ಷರಗಳಿಗೆ ಬದಲಾಯಿಸುತ್ತದೆ
+    normal_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    fancy_chars  = "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+    mapping = str.maketrans(normal_chars, fancy_chars)
+    return text.translate(mapping)
+
 def get_repos():
     url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&sort=updated"
     try:
@@ -15,34 +22,37 @@ def get_repos():
 
 def create_repo_card(repo):
     name = repo.get('name')
+    # ಇಲ್ಲಿ ನಾವು ಫಾಂಟ್ ಸ್ಟೈಲ್ ಅಪ್ಲೈ ಮಾಡುತ್ತಿದ್ದೇವೆ
+    fancy_name = get_fancy_font(name)
+    
     desc = repo.get('description', "No description available.")
     stars = repo.get('stargazers_count', 0)
     forks = repo.get('forks_count', 0)
     issues = repo.get('open_issues_count', 0)
-    updated = repo.get('updated_at', '')[:10]
+    updated = repo.get('pushed_at', '')[:10]
     url = repo.get('html_url')
     topics = repo.get('topics', [])
     
     # ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್ ಸೆಕ್ಷನ್
-    tags = " ".join([f"#{t}" for t in topics[:5]]) if topics else "#devops #learning"
+    tags = " ".join([f"#{t}" for t in topics[:5]]) if topics else "#devops #cloudsarathi"
     
-    # ಕಾರ್ಡ್ ಡಿಸೈನ್ (HTML & Markdown mix)
+    # ನೀವು ಕೇಳಿದ ಅದೇ UI ಡಿಸೈನ್
     card = f"""
-📂 **[{name}]({url})**
+📂 **[{fancy_name}]({url})**
 
-{desc}
+*{desc}*
 
-🗓 Last Updated: {updated} | 👤 Author: {USERNAME} | 🏷 Open Issues: {issues}
-⭐ Stars: {stars} | 🍴 Forks: {forks} | ⚪ CI/CD Status: ![Status](https://img.shields.io/github/actions/workflow/status/{USERNAME}/{name}/tracker.yml?branch=main&style=flat-square)
+🗓 **Last Updated:** {updated} | 👤 **Author:** {USERNAME} | 🏷 **Open Issues:** {issues}
+⭐ **Stars:** {stars} | 🍴 **Forks:** {forks} | ⚪ **CI/CD Status**
 {tags}
 ---
 """
     return card
 
-# 1. ಡೇಟಾ ಪಡೆಯಿರಿ
+# 1. ಡೇಟಾ ಸಂಗ್ರಹ
 all_repos = get_repos()
 
-# 2. ಕಾರ್ಡ್‌ಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಿ (Profile README ಸ್ಕಿಪ್ ಮಾಡಿ)
+# 2. ಕಾರ್ಡ್ ಸಿದ್ಧಪಡಿಸಿ
 repo_cards = ""
 for r in all_repos:
     if r['name'].lower() != USERNAME.lower():
@@ -50,9 +60,7 @@ for r in all_repos:
 
 # 3. README ಫಾರ್ಮ್ಯಾಟ್
 current_time = datetime.now().strftime('%Y-%m-%d')
-readme_content = f"""# 🚀 Cloud Sarathi - My DevOps Portfolio
-
-ನನ್ನ ಎಲ್ಲಾ ಪ್ರಮುಖ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಮತ್ತು ವಿವರ ಇಲ್ಲಿದೆ.
+readme_content = f"""# 🚀 Cloud Sarathi - DevOps Portfolio
 
 {repo_cards}
 *🔄 Last Automated Sync: {current_time}*
@@ -62,4 +70,4 @@ readme_content = f"""# 🚀 Cloud Sarathi - My DevOps Portfolio
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme_content)
 
-print("✅ Professional UI Dashboard Updated!")
+print("✅ Professional UI with Fancy Font Updated!")
