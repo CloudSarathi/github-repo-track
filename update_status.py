@@ -1,60 +1,65 @@
 import requests
 from datetime import datetime
 
-# ನಿಮ್ಮ ಯೂಸರ್ ನೇಮ್
 USERNAME = "CloudSarathi"
 
-def get_all_repos():
-    # ಪಬ್ಲಿಕ್ ರೆಪೊಸಿಟರಿಗಳನ್ನು ಪಡೆಯಲು API Call (ಇತ್ತೀಚಿನ ಅಪ್‌ಡೇಟ್ ಮೊದಲು ಬರುವಂತೆ ಸಾರ್ಟ್ ಮಾಡಲಾಗಿದೆ)
+def get_repos():
     url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&sort=updated"
     try:
         response = requests.get(url)
         if response.status_code == 200:
             return response.json()
-    except Exception as e:
-        print(f"Error fetching repos: {e}")
+    except:
+        return []
     return []
 
-def format_row(repo):
+def create_repo_card(repo):
     name = repo.get('name')
-    url = repo.get('html_url')
+    desc = repo.get('description', "No description available.")
     stars = repo.get('stargazers_count', 0)
+    forks = repo.get('forks_count', 0)
     issues = repo.get('open_issues_count', 0)
-    # ದಿನಾಂಕವನ್ನು ಸುಲಭವಾಗಿ ಓದಲು ಫಾರ್ಮ್ಯಾಟ್ ಮಾಡಿ (YYYY-MM-DD)
-    date = repo.get('pushed_at', '')[:10]
-    # ಭಾಷೆಯನ್ನು ತೋರಿಸಲು (Python, Shell, etc.)
-    lang = repo.get('language', 'No Lang')
+    updated = repo.get('updated_at', '')[:10]
+    url = repo.get('html_url')
+    topics = repo.get('topics', [])
     
-    return f"| [**{name}**]({url}) | {lang} | ⭐ {stars} | 🛠️ {issues} | 📅 {date} |"
+    # ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್ ಸೆಕ್ಷನ್
+    tags = " ".join([f"#{t}" for t in topics[:5]]) if topics else "#devops #learning"
+    
+    # ಕಾರ್ಡ್ ಡಿಸೈನ್ (HTML & Markdown mix)
+    card = f"""
+📂 **[{name}]({url})**
 
-# 1. ಎಲ್ಲಾ ರೆಪೊಸಿಟರಿಗಳ ಡೇಟಾ ಸಂಗ್ರಹ
-all_repos = get_all_repos()
+{desc}
 
-# 2. ಟೇಬಲ್ ಹೆಡರ್ ಸಿದ್ಧಪಡಿಸುವುದು
-header = "| Repository | Language | Stars | Issues | Last Update |\n| :--- | :--- | :---: | :---: | :--- |\n"
-
-# 3. ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ರೆಪೊಸಿಟರಿಯನ್ನು (CloudSarathi/CloudSarathi) ಹೊರತುಪಡಿಸಿ ಉಳಿದೆಲ್ಲವನ್ನೂ ಸೇರಿಸಿ
-rows = [format_row(r) for r in all_repos if r['name'].lower() != USERNAME.lower()]
-table = header + "\n".join(rows)
-
-# 4. ಪೂರ್ತಿ README ಕಂಟೆಂಟ್ ತಯಾರಿ
-current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-readme_content = f"""# 📊 Cloud Sarathi Live Project Dashboard
-
-ನನ್ನ ಕಲಿಕೆ ಮತ್ತು ಡೆವೊಪ್ಸ್ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಇಲ್ಲಿದೆ. ಇದು ಆಟೋಮ್ಯಾಟಿಕ್ ಆಗಿ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತದೆ.
-
-{table}
-*Last Automated Update: {current_time} (IST)*
-
+🗓 Last Updated: {updated} | 👤 Author: {USERNAME} | 🏷 Open Issues: {issues}
+⭐ Stars: {stars} | 🍴 Forks: {forks} | ⚪ CI/CD Status: ![Status](https://img.shields.io/github/actions/workflow/status/{USERNAME}/{name}/tracker.yml?branch=main&style=flat-square)
+{tags}
 ---
-### 🚀 Connect with Cloud Sarathi
-* 📺 [YouTube Channel](https://www.youtube.com/@CloudSarathi)
-* 💼 [LinkedIn](https://www.linkedin.com/in/cloudsarathi)
+"""
+    return card
+
+# 1. ಡೇಟಾ ಪಡೆಯಿರಿ
+all_repos = get_repos()
+
+# 2. ಕಾರ್ಡ್‌ಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಿ (Profile README ಸ್ಕಿಪ್ ಮಾಡಿ)
+repo_cards = ""
+for r in all_repos:
+    if r['name'].lower() != USERNAME.lower():
+        repo_cards += create_repo_card(r)
+
+# 3. README ಫಾರ್ಮ್ಯಾಟ್
+current_time = datetime.now().strftime('%Y-%m-%d')
+readme_content = f"""# 🚀 Cloud Sarathi - My DevOps Portfolio
+
+ನನ್ನ ಎಲ್ಲಾ ಪ್ರಮುಖ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಮತ್ತು ವಿವರ ಇಲ್ಲಿದೆ.
+
+{repo_cards}
+*🔄 Last Automated Sync: {current_time}*
 """
 
-# 5. ಹಳೆಯದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಅಳಿಸಿ ಹೊಸದಾಗಿ ಬರೆಯುವುದು (Overwrite)
+# 4. ಫೈಲ್‌ಗೆ ಬರೆಯಿರಿ
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme_content)
 
-print(f"✅ Dashboard updated with {len(rows)} public repositories!")
+print("✅ Professional UI Dashboard Updated!")
