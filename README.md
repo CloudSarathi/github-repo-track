@@ -1,9 +1,9 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
-📂 **[𝒁𝒐𝒎𝒂𝒕𝒐-𝑪𝒍𝒐𝒏𝒆](https://github.com/CloudSarathi/Zomato-Clone)**
+📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
-Developed as a full-stack clone of Zomato, this application combines a React.js user interface with a comprehensive DevSecOps workflow, ensuring the delivery pipeline is both automated and resilient against security vulnerabilities.
+github-repo-track
 
 <sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
@@ -11,9 +11,9 @@ Developed as a full-stack clone of Zomato, this application combines a React.js 
 <sub>#devops #cloudsarathi</sub>
 ---
 
-📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
+📂 **[𝒁𝒐𝒎𝒂𝒕𝒐-𝑪𝒍𝒐𝒏𝒆](https://github.com/CloudSarathi/Zomato-Clone)**
 
-github-repo-track
+Developed as a full-stack clone of Zomato, this application combines a React.js user interface with a comprehensive DevSecOps workflow, ensuring the delivery pipeline is both automated and resilient against security vulnerabilities.
 
 <sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
