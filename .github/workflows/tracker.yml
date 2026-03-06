@@ -1,41 +1,100 @@
-name: Auto Repo Tracker
+name: Update Repository Status
 
-# ಯಾವ ಸಮಯದಲ್ಲಿ ಈ ಆಕ್ಷನ್ ರನ್ ಆಗಬೇಕು?
 on:
   schedule:
-    - cron: '0 * * * *' # ಪ್ರತಿ ಗಂಟೆಗೆ ಒಮ್ಮೆ ಆಟೋಮ್ಯಾಟಿಕ್ ಆಗಿ ರನ್ ಆಗುತ್ತದೆ
-  workflow_dispatch:   # ನೀವು ಬೇಕಾದಾಗ ಮ್ಯಾನುಯಲ್ ಆಗಿ ರನ್ ಮಾಡಲು ಬಟನ್ ನೀಡುತ್ತದೆ
-  push:
-    branches: [main]   # ನೀವು ಏನಾದರೂ ಬದಲಾವಣೆ ಮಾಡಿ ಪುಶ್ ಮಾಡಿದಾಗ ರನ್ ಆಗುತ್ತದೆ
+    - cron: "0 */6 * * *" # Run every 6 hours
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
-  build:
+  update-readme:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಗಿಟ್‌ಹಬ್ ರನ್ನರ್‌ಗೆ ಡೌನ್‌ಲೋಡ್ ಮಾಡುತ್ತದೆ
-      - name: Checkout Repository
+      - name: ⬇️ Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for better commit messages
 
-      # 2. ಪೈಥಾನ್ ಎನ್ವಿರಾನ್ಮೆಂಟ್ ಸೆಟ್ ಅಪ್ ಮಾಡುತ್ತದೆ
-      - name: Setup Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: "3.11"
+          cache: "pip" # Cache pip dependencies for faster runs
 
-      # 3. ಅವಶ್ಯಕ ಲೈಬ್ರರಿಗಳನ್ನು ಇನ್ಸ್ಟಾಲ್ ಮಾಡುತ್ತದೆ
-      - name: Install Dependencies
-        run: pip install requests
+      - name: 📦 Install Python Dependencies
+        run: pip install -r requirements.txt
 
-      # 4. ನಾವು ಬರೆದ ಪೈಥಾನ್ ಸ್ಕ್ರಿಪ್ಟ್ ರನ್ ಮಾಡುತ್ತದೆ
-      - name: Run Tracker Script
-        run: python update_status.py
-
-      # 5. ಬದಲಾದ README ಫೈಲ್ ಅನ್ನು ವಾಪಸ್ ನಿಮ್ಮ ರೆಪೊಸಿಟರಿಗೆ ಸೇವ್ ಮಾಡುತ್ತದೆ
-      - name: Commit and Push Changes
+      - name: 🔍 Check GitHub API Rate Limit
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action Bot"
-          git add README.md
-          git commit -m "📊 Automated Update: Repo Status" || echo "No changes to commit"
-          git push
+          echo "Checking GitHub API rate limit status..."
+          curl -s -H "Authorization: token ${{ secrets.GH_TOKEN }}" https://api.github.com/rate_limit | jq .
+
+      - name: 🧹 Clean README before update
+        run: |
+          echo "Cleaning README.md to remove any duplicate sections..."
+          python cleanup_readme.py --verbose --backup
+
+      - name: 🛠️ Run Python Update Script
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USERNAME: "CloudSarathi"
+          LOG_LEVEL: "INFO"
+        run: |
+          echo "Running repository status update script..."
+          python update_status.py --sort stars --verbose
+
+      - name: 🧰 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: "npm" # Cache npm dependencies
+
+      - name: 📦 Install Node.js Dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          fi
+
+      - name: 📜 Run Node.js Scripts
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          if [ -f update-repo-meta.js ]; then
+            echo "Running update-repo-meta.js..."
+            node update-repo-meta.js
+          fi
+
+          if [ -f merge-metadata.js ]; then
+            echo "Running merge-metadata.js..."
+            node merge-metadata.js
+          fi
+
+      - name: 🕒 Update "Last Updated" Badge in README
+        run: |
+          echo "Updating 'Last Updated' badge in README.md..."
+          date_str=$(date -u '+%Y--%m--%d %H:%M UTC' | sed 's/ /%20/' | sed 's/:/%3A/')
+          sed -i "s|Last%20Updated-[^)]*|Last%20Updated-${date_str}|g" README.md
+
+      - name: 📊 Generate Status Summary
+        run: |
+          echo "### Repository Status Update Results" >> $GITHUB_STEP_SUMMARY
+          echo "- Updated at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- Updated repositories: $(grep -o '## 📂' README.md | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- Duplicates removed: $(test -f README.md.bak && (grep -o '## 📂' README.md.bak | wc -l) || echo 0) - $(grep -o '## 📂' README.md | wc -l) = $(($(test -f README.md.bak && (grep -o '## 📂' README.md.bak | wc -l) || echo 0) - $(grep -o '## 📂' README.md | wc -l)))" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "See the [README.md](https://github.com/${{ github.repository }}/blob/main/README.md) for details." >> $GITHUB_STEP_SUMMARY
+
+      - name: 🔁 Commit and Push Changes
+        run: |
+          git config --global user.name "Anilkumar N"
+          git config --global user.email "anilkumar@users.noreply.github.com"
+
+          # Check if there are any changes to commit
+          if git diff --name-only | grep -q .; then
+            echo "Changes detected, committing..."
+            git add .
+            git commit -m "git-tracker: 🔄 Auto-update repository status [skip ci]"
+            git push
+          else
+            echo "No changes detected, skipping commit"
+          fi
