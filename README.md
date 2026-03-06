@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝑵𝒆𝒕𝒇𝒍𝒊𝒙-𝑪𝒍𝒐𝒏𝒆-𝑫𝒆𝒗𝑺𝒆𝒄𝑶𝒑𝒔-𝑷𝒓𝒐𝒋𝒆𝒄𝒕](https://github.com/CloudSarathi/Netflix-Clone-DevSecOps-Project)**
+
+None
+
+<sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝑨𝑾𝑺_𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔](https://github.com/CloudSarathi/AWS_Resources)**
 
 AWS_Resources Notes
@@ -44,16 +54,6 @@ cloudsarathi.info  website
 📂 **[𝑱𝒊𝒐𝑯𝒐𝒕𝒔𝒕𝒂𝒓-𝑫𝒆𝒗𝑶𝒑𝒔-𝑷𝒓𝒐𝒋𝒆𝒄𝒕](https://github.com/CloudSarathi/JioHotstar-DevOps-Project)**
 
 JioHotstar-DevOps-Project
-
-<sub>🗓 **Last Updated:** 2026-02-27 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
-<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
-
-<sub>#devops #cloudsarathi</sub>
----
-
-📂 **[𝑵𝒆𝒕𝒇𝒍𝒊𝒙-𝑪𝒍𝒐𝒏𝒆-𝑫𝒆𝒗𝑺𝒆𝒄𝑶𝒑𝒔-𝑷𝒓𝒐𝒋𝒆𝒄𝒕](https://github.com/CloudSarathi/Netflix-Clone-DevSecOps-Project)**
-
-None
 
 <sub>🗓 **Last Updated:** 2026-02-27 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
