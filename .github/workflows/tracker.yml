@@ -1,0 +1,41 @@
+name: Auto Repo Tracker
+
+# ಯಾವ ಸಮಯದಲ್ಲಿ ಈ ಆಕ್ಷನ್ ರನ್ ಆಗಬೇಕು?
+on:
+  schedule:
+    - cron: '0 * * * *' # ಪ್ರತಿ ಗಂಟೆಗೆ ಒಮ್ಮೆ ಆಟೋಮ್ಯಾಟಿಕ್ ಆಗಿ ರನ್ ಆಗುತ್ತದೆ
+  workflow_dispatch:   # ನೀವು ಬೇಕಾದಾಗ ಮ್ಯಾನುಯಲ್ ಆಗಿ ರನ್ ಮಾಡಲು ಬಟನ್ ನೀಡುತ್ತದೆ
+  push:
+    branches: [main]   # ನೀವು ಏನಾದರೂ ಬದಲಾವಣೆ ಮಾಡಿ ಪುಶ್ ಮಾಡಿದಾಗ ರನ್ ಆಗುತ್ತದೆ
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಗಿಟ್‌ಹಬ್ ರನ್ನರ್‌ಗೆ ಡೌನ್‌ಲೋಡ್ ಮಾಡುತ್ತದೆ
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. ಪೈಥಾನ್ ಎನ್ವಿರಾನ್ಮೆಂಟ್ ಸೆಟ್ ಅಪ್ ಮಾಡುತ್ತದೆ
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # 3. ಅವಶ್ಯಕ ಲೈಬ್ರರಿಗಳನ್ನು ಇನ್ಸ್ಟಾಲ್ ಮಾಡುತ್ತದೆ
+      - name: Install Dependencies
+        run: pip install requests
+
+      # 4. ನಾವು ಬರೆದ ಪೈಥಾನ್ ಸ್ಕ್ರಿಪ್ಟ್ ರನ್ ಮಾಡುತ್ತದೆ
+      - name: Run Tracker Script
+        run: python update_status.py
+
+      # 5. ಬದಲಾದ README ಫೈಲ್ ಅನ್ನು ವಾಪಸ್ ನಿಮ್ಮ ರೆಪೊಸಿಟರಿಗೆ ಸೇವ್ ಮಾಡುತ್ತದೆ
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add README.md
+          git commit -m "📊 Automated Update: Repo Status" || echo "No changes to commit"
+          git push
