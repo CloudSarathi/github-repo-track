@@ -1,8 +1,21 @@
-# 📊 Cloud Sarathi Live Repo Tracker
+# 📊 Cloud Sarathi Live Project Dashboard
 
-ಈ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ನನ್ನ ಪ್ರಮುಖ ಡೆವೊಪ್ಸ್ ರೆಪೊಸಿಟರಿಗಳನ್ನು ಲೈವ್ ಆಗಿ ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತದೆ.
+ನನ್ನ ಕಲಿಕೆ ಮತ್ತು ಡೆವೊಪ್ಸ್ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಇಲ್ಲಿದೆ. ಇದು ಆಟೋಮ್ಯಾಟಿಕ್ ಆಗಿ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತದೆ.
 
-| Repository | ⭐ Stars | 🛠️ Issues | 📅 Last Update |
-| :--- | :---: | :---: | :--- |
+| Repository | Language | Stars | Issues | Last Update |
+| :--- | :--- | :---: | :---: | :--- |
+| [**github-repo-track**](https://github.com/CloudSarathi/github-repo-track) | Python | ⭐ 0 | 🛠️ 0 | 📅 2026-03-06 |
+| [**into-the-devops**](https://github.com/CloudSarathi/into-the-devops) | None | ⭐ 0 | 🛠️ 0 | 📅 2025-06-22 |
+| [**AWS-Resources**](https://github.com/CloudSarathi/AWS-Resources) | None | ⭐ 0 | 🛠️ 0 | 📅 2026-03-06 |
+| [**cloudsarathi.info**](https://github.com/CloudSarathi/cloudsarathi.info) | JavaScript | ⭐ 0 | 🛠️ 0 | 📅 2026-03-04 |
+| [**JioHotstar-DevOps-Project**](https://github.com/CloudSarathi/JioHotstar-DevOps-Project) | JavaScript | ⭐ 0 | 🛠️ 0 | 📅 2026-02-27 |
+| [**Netflix-Clone-DevSecOps-Project**](https://github.com/CloudSarathi/Netflix-Clone-DevSecOps-Project) | TypeScript | ⭐ 0 | 🛠️ 0 | 📅 2026-02-27 |
+| [**DD-Task**](https://github.com/CloudSarathi/DD-Task) | TypeScript | ⭐ 0 | 🛠️ 0 | 📅 2026-02-24 |
+| [**DevOps_Project**](https://github.com/CloudSarathi/DevOps_Project) | JavaScript | ⭐ 1 | 🛠️ 0 | 📅 2026-02-21 |
+| [**vinayakacable**](https://github.com/CloudSarathi/vinayakacable) | HTML | ⭐ 0 | 🛠️ 1 | 📅 2025-09-12 |
+*Last Automated Update: 2026-03-06 05:27:41 (IST)*
 
-*ಕೊನೆಯದಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿದ್ದು: 2026-03-06 05:24:23*
+---
+### 🚀 Connect with Cloud Sarathi
+* 📺 [YouTube Channel](https://www.youtube.com/@CloudSarathi)
+* 💼 [LinkedIn](https://www.linkedin.com/in/cloudsarathi)
