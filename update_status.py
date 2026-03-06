@@ -2,44 +2,41 @@ import requests
 import re
 
 USERNAME = "CloudSarathi"
-# ನಿಮ್ಮ ರೆಪೊಸಿಟರಿ ಹೆಸರುಗಳು ಸರಿಯಾಗಿವೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ
 REPOS = ["01-Linux-Fundamentals", "02-Git-GitHub"]
 
 def get_stats(repo):
     url = f"https://api.github.com/repos/{USERNAME}/{repo}"
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        res = response.json()
-        name = res.get('name', repo)
-        stars = res.get('stargazers_count', 0)
-        issues = res.get('open_issues_count', 0)
-        pushed_at = res.get('pushed_at', "0000-00-00")[:10]
-        return f"| **{name}** | {stars} | {issues} | {pushed_at} |"
-    else:
-        print(f"⚠️ Warning: Repository '{repo}' not found or error occurred.")
-        return None
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            res = response.json()
+            return f"| **{res.get('name')}** | {res.get('stargazers_count')} | {res.get('open_issues_count')} | {res.get('pushed_at')[:10]} |"
+    except:
+        pass
+    return None
 
-# ಲಭ್ಯವಿರುವ ರೆಪೊಸಿಟರಿಗಳ ಡೇಟಾವನ್ನು ಮಾತ್ರ ಸಂಗ್ರಹಿಸುವುದು
-stats_list = []
-for r in REPOS:
-    stat = get_stats(r)
-    if stat:
-        stats_list.append(stat)
-
+# ಕೇವಲ ಒಂದು ಬಾರಿ ಮಾತ್ರ ಹೆಡರ್ ಸೃಷ್ಟಿಸುವುದು
 table = "| Repository | ⭐ Stars | 🛠️ Issues | 📅 Last Update |\n| :--- | :---: | :---: | :--- |\n"
+stats_list = [get_stats(r) for r in REPOS if get_stats(r) is not None]
 table += "\n".join(stats_list)
 
+# README ಓದುವುದು
 with open("README.md", "r", encoding="utf-8") as f:
     content = f.read()
 
-pattern = r".*?"
-replacement = f"\n\n{table}\n\n"
+# ಹಳೆಯದನ್ನು ಪೂರ್ತಿಯಾಗಿ ರಿಪ್ಲೇಸ್ ಮಾಡಲು Regular Expression ಬಳಕೆ
+start_marker = ""
+end_marker = ""
 
-if "" in content:
+# ಮಾರ್ಕರ್ ನಡುವೆ ಇರುವ ಎಲ್ಲವನ್ನೂ (ಹಳೆಯ ಟೇಬಲ್‌ಗಳನ್ನು) ಅಳಿಸಿ ಹೊಸ ಟೇಬಲ್ ಹಾಕುವುದು
+pattern = f"{start_marker}.*?{end_marker}"
+replacement = f"{start_marker}\n\n{table}\n\n{end_marker}"
+
+if start_marker in content and end_marker in content:
+    # DOTALL ಫ್ಲ್ಯಾಗ್ ಬಳಸಿ ಮಲ್ಟಿಪಲ್ ಲೈನ್ಸ್ ಅಪ್‌ಡೇಟ್ ಮಾಡುವುದು
     new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(new_content)
-    print("✅ Successfully updated README.md")
+    print("✅ Fixed! Table cleaned and updated.")
 else:
-    print("❌ Error: Markers not found in README.md")
+    print("❌ Markers not found!")
