@@ -22,9 +22,7 @@ def get_repos():
 
 def create_repo_card(repo):
     name = repo.get('name')
-    # ಇಲ್ಲಿ ನಾವು ಫಾಂಟ್ ಸ್ಟೈಲ್ ಅಪ್ಲೈ ಮಾಡುತ್ತಿದ್ದೇವೆ
     fancy_name = get_fancy_font(name)
-    
     desc = repo.get('description', "No description available.")
     stars = repo.get('stargazers_count', 0)
     forks = repo.get('forks_count', 0)
@@ -33,18 +31,18 @@ def create_repo_card(repo):
     url = repo.get('html_url')
     topics = repo.get('topics', [])
     
-    # ಹ್ಯಾಶ್‌ಟ್ಯಾಗ್ ಸೆಕ್ಷನ್
     tags = " ".join([f"#{t}" for t in topics[:5]]) if topics else "#devops #cloudsarathi"
     
-    # ನೀವು ಕೇಳಿದ ಅದೇ UI ಡಿಸೈನ್
+    # ಇಲ್ಲಿ <sub> ಟ್ಯಾಗ್ ಬಳಸುವುದರಿಂದ ಫಾಂಟ್ ಸೈಜ್ ಕಡಿಮೆಯಾಗುತ್ತದೆ ಮತ್ತು ಲೆಟರ್ ಸ್ಪೇಸಿಂಗ್ ನೀಟಾಗಿ ಕಾಣುತ್ತದೆ
     card = f"""
 📂 **[{fancy_name}]({url})**
 
-*{desc}*
+{desc}
 
-🗓 **Last Updated:** {updated} | 👤 **Author:** {USERNAME} | 🏷 **Open Issues:** {issues}
-⭐ **Stars:** {stars} | 🍴 **Forks:** {forks} | ⚪ **CI/CD Status**
-{tags}
+<sub>🗓 **Last Updated:** {updated} | 👤 **Author:** {USERNAME} | 🏷 **Open Issues:** {issues}</sub>
+<sub>⭐ **Stars:** {stars} | 🍴 **Forks:** {forks} | ⚪ **CI/CD Status**</sub>
+
+<sub>{tags}</sub>
 ---
 """
     return card
