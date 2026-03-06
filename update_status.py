@@ -15,28 +15,29 @@ def get_stats(repo):
         pass
     return None
 
-# ಕೇವಲ ಒಂದು ಬಾರಿ ಮಾತ್ರ ಹೆಡರ್ ಸೃಷ್ಟಿಸುವುದು
+# ಹೊಸದಾಗಿ ಟೇಬಲ್ ರೆಡಿ ಮಾಡಿ
 table = "| Repository | ⭐ Stars | 🛠️ Issues | 📅 Last Update |\n| :--- | :---: | :---: | :--- |\n"
 stats_list = [get_stats(r) for r in REPOS if get_stats(r) is not None]
 table += "\n".join(stats_list)
 
-# README ಓದುವುದು
+# README ಓದಿ
 with open("README.md", "r", encoding="utf-8") as f:
     content = f.read()
 
-# ಹಳೆಯದನ್ನು ಪೂರ್ತಿಯಾಗಿ ರಿಪ್ಲೇಸ್ ಮಾಡಲು Regular Expression ಬಳಕೆ
+# ಅತೀ ಮುಖ್ಯ: ಹಳೆಯ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಅನ್ನು ಹುಡುಕಿ ಕ್ಲೀನ್ ಮಾಡುವ ಲಾಜಿಕ್
 start_marker = ""
 end_marker = ""
 
-# ಮಾರ್ಕರ್ ನಡುವೆ ಇರುವ ಎಲ್ಲವನ್ನೂ (ಹಳೆಯ ಟೇಬಲ್‌ಗಳನ್ನು) ಅಳಿಸಿ ಹೊಸ ಟೇಬಲ್ ಹಾಕುವುದು
-pattern = f"{start_marker}.*?{end_marker}"
-replacement = f"{start_marker}\n\n{table}\n\n{end_marker}"
+# ಇಲ್ಲಿ ನಾವು ಪೂರ್ತಿ ಮಾರ್ಕರ್ ನಡುವಿನ ಭಾಗವನ್ನು ಬದಲು ಮಾಡುತ್ತೇವೆ
+# ಒಂದು ವೇಳೆ ಮಲ್ಟಿಪಲ್ ಮಾರ್ಕರ್ಸ್ ಇದ್ದರೆ ಅವೆಲ್ಲವನ್ನೂ ಇದು ಸರಿಪಡಿಸುತ್ತದೆ
+new_content = re.sub(
+    f"{start_marker}.*?{end_marker}",
+    f"{start_marker}\n\n{table}\n\n{end_marker}",
+    content,
+    flags=re.DOTALL
+)
 
-if start_marker in content and end_marker in content:
-    # DOTALL ಫ್ಲ್ಯಾಗ್ ಬಳಸಿ ಮಲ್ಟಿಪಲ್ ಲೈನ್ಸ್ ಅಪ್‌ಡೇಟ್ ಮಾಡುವುದು
-    new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-    with open("README.md", "w", encoding="utf-8") as f:
-        f.write(new_content)
-    print("✅ Fixed! Table cleaned and updated.")
-else:
-    print("❌ Markers not found!")
+with open("README.md", "w", encoding="utf-8") as f:
+    f.write(new_content)
+
+print("✅ Cleanup complete! README is now clean and updated.")
