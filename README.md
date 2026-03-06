@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝑨𝑾𝑺-𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔](https://github.com/CloudSarathi/AWS-Resources)**
+
+AWS Complete Notes
+
+<sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
 github-repo-track
@@ -16,16 +26,6 @@ github-repo-track
 𝖫𝗂𝗇𝗎𝗑, 𝖩𝖾𝗇𝗄𝗂𝗇𝗌, 𝖠𝖶𝖲, 𝖲𝖱𝖤, 𝖯𝗋𝗈𝗆𝖾𝗍𝗁𝖾𝗎𝗌, 𝖣𝗈𝖼𝗄𝖾𝗋, 𝖯𝗒𝗍𝗁𝗈𝗇, 𝖠𝗇𝗌𝗂𝖻𝗅𝖾, 𝖦𝗂𝗍, 𝖪𝗎𝖻𝖾𝗋𝗇𝖾𝗍𝖾𝗌, 𝖳𝖾𝗋𝗋𝖺𝖿𝗈𝗋𝗆, 𝖮𝗉𝖾𝗇𝖲𝗍𝖺𝖼𝗄, 𝖲𝖰𝖫, 𝖭𝗈𝖲𝖰𝖫, 𝖠𝗓𝗎𝗋𝖾, 𝖦𝖢𝖯, 𝖣𝖭𝖲, 𝖤𝗅𝖺𝗌𝗍𝗂𝖼, 𝖭𝖾𝗍𝗐𝗈𝗋𝗄, 𝖵𝗂𝗋𝗍𝗎𝖺𝗅𝗂𝗓𝖺𝗍𝗂𝗈𝗇. 𝖣𝖾𝗏𝖮𝗉𝗌 𝖨𝗇𝗍𝖾𝗋𝗏𝗂𝖾𝗐 𝖰𝗎𝖾𝗌𝗍𝗂𝗈𝗇𝗌
 
 <sub>🗓 **Last Updated:** 2025-06-22 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
-<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
-
-<sub>#devops #cloudsarathi</sub>
----
-
-📂 **[𝑨𝑾𝑺-𝑹𝒆𝒔𝒐𝒖𝒓𝒄𝒆𝒔](https://github.com/CloudSarathi/AWS-Resources)**
-
-AWS Complete Notes
-
-<sub>🗓 **Last Updated:** 2026-03-06 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
 
 <sub>#devops #cloudsarathi</sub>
