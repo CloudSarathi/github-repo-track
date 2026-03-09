@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝒄𝒉𝒂𝒕𝒃𝒐𝒕-𝒖𝒊](https://github.com/CloudSarathi/chatbot-ui)**
+
+AI chat for any model.
+
+<sub>🗓 **Last Updated:** 2024-08-03 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
 github-repo-track
