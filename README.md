@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏𝒇𝒐](https://github.com/CloudSarathi/cloudsarathi.info)**
+
+cloudsarathi.info  website
+
+<sub>🗓 **Last Updated:** 2026-03-18 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
 github-repo-track
@@ -61,16 +71,6 @@ AWS_Resources Notes
 <sub>#devops #cloudsarathi</sub>
 ---
 
-📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏𝒇𝒐](https://github.com/CloudSarathi/cloudsarathi.info)**
-
-cloudsarathi.info  website
-
-<sub>🗓 **Last Updated:** 2026-03-04 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
-<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
-
-<sub>#devops #cloudsarathi</sub>
----
-
 📂 **[𝑱𝒊𝒐𝑯𝒐𝒕𝒔𝒕𝒂𝒓-𝑫𝒆𝒗𝑶𝒑𝒔-𝑷𝒓𝒐𝒋𝒆𝒄𝒕](https://github.com/CloudSarathi/JioHotstar-DevOps-Project)**
 
 JioHotstar-DevOps-Project
@@ -111,4 +111,4 @@ Website for VC Fibernet
 <sub>#devops #cloudsarathi</sub>
 ---
 
-*🔄 Last Automated Sync: 2026-03-17*
+*🔄 Last Automated Sync: 2026-03-18*
