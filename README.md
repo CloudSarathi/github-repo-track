@@ -21,26 +21,6 @@ github-repo-track
 <sub>#devops #cloudsarathi</sub>
 ---
 
-📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏](https://github.com/CloudSarathi/cloudsarathi.in)**
-
-None
-
-<sub>🗓 **Last Updated:** 2026-03-18 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
-<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
-
-<sub>#devops #cloudsarathi</sub>
----
-
-📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏𝒇𝒐](https://github.com/CloudSarathi/cloudsarathi.info)**
-
-cloudsarathi.info  website
-
-<sub>🗓 **Last Updated:** 2026-03-18 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
-<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
-
-<sub>#devops #cloudsarathi</sub>
----
-
 📂 **[𝒄𝒉𝒂𝒕𝒃𝒐𝒕-𝒖𝒊](https://github.com/CloudSarathi/chatbot-ui)**
 
 AI chat for any model.
