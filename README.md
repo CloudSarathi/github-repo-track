@@ -1,9 +1,9 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
-📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏𝒇𝒐](https://github.com/CloudSarathi/cloudsarathi.info)**
+📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
-cloudsarathi.info  website
+github-repo-track
 
 <sub>🗓 **Last Updated:** 2026-03-18 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
@@ -11,11 +11,11 @@ cloudsarathi.info  website
 <sub>#devops #cloudsarathi</sub>
 ---
 
-📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
+📂 **[𝒄𝒍𝒐𝒖𝒅𝒔𝒂𝒓𝒂𝒕𝒉𝒊.𝒊𝒏𝒇𝒐](https://github.com/CloudSarathi/cloudsarathi.info)**
 
-github-repo-track
+cloudsarathi.info  website
 
-<sub>🗓 **Last Updated:** 2026-03-17 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>🗓 **Last Updated:** 2026-03-18 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
 <sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
 
 <sub>#devops #cloudsarathi</sub>
