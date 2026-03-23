@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝑴𝒚𝒏𝒕𝒓𝒂-𝑪𝒍𝒐𝒏𝒆](https://github.com/CloudSarathi/Myntra-Clone)**
+
+None
+
+<sub>🗓 **Last Updated:** 2024-03-23 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
 github-repo-track
