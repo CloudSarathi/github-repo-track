@@ -1,6 +1,16 @@
 # 🚀 Cloud Sarathi - DevOps Portfolio
 
 
+📂 **[𝑨𝒎𝒂𝒛𝒐𝒏-𝑨𝒑𝒑-𝑫𝒆𝒑𝒍𝒐𝒚𝒎𝒆𝒏𝒕](https://github.com/CloudSarathi/Amazon-App-Deployment)**
+
+Amazon-App-Deployment
+
+<sub>🗓 **Last Updated:** 2023-12-08 | 👤 **Author:** CloudSarathi | 🏷 **Open Issues:** 0</sub>
+<sub>⭐ **Stars:** 0 | 🍴 **Forks:** 0 | ⚪ **CI/CD Status**</sub>
+
+<sub>#devops #cloudsarathi</sub>
+---
+
 📂 **[𝒈𝒊𝒕𝒉𝒖𝒃-𝒓𝒆𝒑𝒐-𝒕𝒓𝒂𝒄𝒌](https://github.com/CloudSarathi/github-repo-track)**
 
 github-repo-track
